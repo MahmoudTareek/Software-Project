@@ -32,6 +32,13 @@ class Pages extends Controller
         $aboutView = new Attendance($this->getModel(), $this);
         $aboutView->output();
     }
+     public function admin()
+    {
+        $viewPath = VIEWS_PATH . 'pages/Admin.php';
+        require_once $viewPath;
+        $aboutView = new Admin($this->getModel(), $this);
+        $aboutView->output();
+    }
 
     public function adduser()
     {
