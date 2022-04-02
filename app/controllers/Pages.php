@@ -47,4 +47,11 @@ class Pages extends Controller
         $aboutView = new AddUser($this->getModel(), $this);
         $aboutView->output();
     }
+    public function permission()
+    {
+        $viewPath = VIEWS_PATH . 'pages/Permission.php';
+        require_once $viewPath;
+        $indexView = new Permission($this->getModel(), $this);
+        $indexView->output();
+    }
 }
