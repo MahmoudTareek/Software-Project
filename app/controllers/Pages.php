@@ -54,4 +54,11 @@ class Pages extends Controller
         $indexView = new Permission($this->getModel(), $this);
         $indexView->output();
     }
+    public function edit()
+    {
+        $viewPath = VIEWS_PATH . 'pages/Edit.php';
+        require_once $viewPath;
+        $indexView = new Edit($this->getModel(), $this);
+        $indexView->output();
+    }
 }
