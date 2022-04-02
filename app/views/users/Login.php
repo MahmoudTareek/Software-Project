@@ -3,7 +3,6 @@ class Login extends view
 {
   public function output()
   {
-    // $title = $this->model->title;
 
     require APPROOT . '/views/inc/header.php';
     flash('register_success');
@@ -46,7 +45,8 @@ EOT;
 
 body {
   
- background-image: url("/images/imgg.jpg");
+ background-image: url("http://localhost/mvc/public/images/imgg.jpg");
+ background-size: cover;
 }
 
 .wrapper {
@@ -132,11 +132,11 @@ body {
 }
 </style>
 <div class="wrapper">
-   <div class="logo"> <img src="images/logo.jpg" alt=""> </div>
+   <div class="logo"> <img src="http://localhost/mvc/public/images/logo.jpg" alt=""> </div>
    <center> <div class="text-center mt-4 name"> Al-Wastani Company</div> </center>
-   <form class="p-3 mt-3" method="POST">
-       <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="email" id="email" placeholder="Email"> </div>
-       <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="password" placeholder="Password"> </div> <button class="btn mt-3">Login</button>
+   <form class="p-3 mt-3">
+       <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="userName" id="userName" placeholder="Email"> </div>
+       <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="pwd" placeholder="Password"> </div> <button class="btn mt-3">Login</button>
    </form>
    <div class="text-center fs-6"> <a href="#">Forget password?</a> </div>
 </div>
