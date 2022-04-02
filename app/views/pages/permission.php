@@ -11,7 +11,9 @@ class Permission extends view
     $text = <<<EOT
    
 <style>
-  
+    body {
+  background: linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
+}
   .wrapper {
      max-width: 1000px;
      min-height: 800px;
@@ -19,7 +21,7 @@ class Permission extends view
      padding: 40px 30px 30px 30px;
      background-color: #ecf0f3;
      border-radius: 15px;
-     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
+    
      
  }
 </style>
