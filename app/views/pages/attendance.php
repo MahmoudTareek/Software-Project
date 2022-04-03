@@ -20,8 +20,7 @@ class Attendance extends view
   box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;    
 }
 body {
-background-image: url("images/imgg.jpg");
-background-size: cover;
+background: linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
 }
 .button3 {
   background-color: #f44336;
