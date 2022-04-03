@@ -61,4 +61,11 @@ class Pages extends Controller
         $indexView = new Edit($this->getModel(), $this);
         $indexView->output();
     }
+     public function contact()
+    {
+        $viewPath = VIEWS_PATH . 'pages/contact.php';
+        require_once $viewPath;
+        $aboutView = new Contact($this->getModel(), $this);
+        $aboutView->output();
+    }
 }
