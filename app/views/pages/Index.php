@@ -10,7 +10,6 @@ class Index extends View
 
     require APPROOT . '/views/inc/header.php';
     $text = <<<EOT
-
 <style>
 body{
   background-color: white;
@@ -24,7 +23,6 @@ body{
   width: 1720px;
   background: linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
   min-width: 400px;
-
 }
 h1,h6{
   padding-top: 20px;
@@ -49,7 +47,6 @@ h3{
 h6{
   padding-left: 770px;
 }
-
 img{
   margin-left: 320px;
   margin-top: 50px;
@@ -67,14 +64,11 @@ img{
 </div>
 <br></br>
 <h2>SERVICES</h2>
-  <a href="pages/attendance"><img src="images/attendance.png" alt="img"></a>
-	<a href="pages/permission"><img src="images/permission.png" alt="img"></a>
+  <a href="pages/attendance"><img src="http://localhost/mvc/public/images/attendance.png" alt="img"></a>
+  <a href="pages/permission"><img src="http://localhost/mvc/public/images/permission.png" alt="img"></a>
   <h3>Attendance</h3>
   <h3 class="t">Permission</h3>
-	
 </body>
-
-
 EOT;
     echo $text;
     require APPROOT . '/views/inc/footer.php';
