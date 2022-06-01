@@ -4,10 +4,16 @@ class RegisterModel extends UserModel
 {
     public  $title = 'User Registration Page';
     protected $name;
-    protected $role;
+    protected $mac;
     protected $nameErr;
+    protected $phoneErr;
+    protected $TitleErr;
+    protected $Title;
+    protected $phone;
     protected $confirmPassword;
     protected $confirmPasswordErr;
+    protected $role;
+   
 
 
     public function __construct()
@@ -15,7 +21,16 @@ class RegisterModel extends UserModel
         parent::__construct();
         $this->name     = "";
         $this->nameErr = "";
+        $this->TitleErr = "";
+        $this->phoneErr = "";
+        $this->Title = "";
+        $this->phone = "";
         $this->role = "";
+
+      
+
+        $this->mac = exec('getmac');
+        $this->mac = strtok($this->mac, ' ');
         $this->confirmPassword = "";
         $this->confirmPasswordErr = "";
     }
@@ -29,6 +44,24 @@ class RegisterModel extends UserModel
     {
         $this->name = $name;
     }
+      public function getTitle()
+    {
+        return $this->Title;
+    }
+
+    public function setTitle($Title)
+    {
+        $this->Title = $Title;
+    }
+      public function getphone()
+    {
+        return $this->phone;
+    }
+
+    public function setphone($phone)
+    {
+        $this->phone = $phone;
+    }
 
     public function getNameErr()
     {
@@ -38,6 +71,24 @@ class RegisterModel extends UserModel
     public function setNameErr($nameErr)
     {
         $this->nameErr = $nameErr;
+    }
+     public function getTitleErr()
+    {
+        return $this->TitleErr;
+    }
+
+    public function setTitleErr($TitleErr)
+    {
+        $this->TitleErr = $TitleErr;
+    }
+     public function getphoneErr()
+    {
+        return $this->phoneErr;
+    }
+
+    public function setphoneErr($phoneErr)
+    {
+        $this->phoneErr = $phoneErr;
     }
 
     public function getConfirmPassword()
@@ -60,30 +111,25 @@ class RegisterModel extends UserModel
 
     public function signup()
     {
-     $uname=$_POST['name'];
-     $email=$_POST['email'];
-     $pass=$_POST['password'];
-     $role=$_POST['role'];
+        $email=$_POST['email'];
 
-    if(strpos("$email","@admin")){
-     $this->role = "1";
-      }
-           else if(strpos("$email","@hr")){
-        $this->role = "2";
-           }
- 
+        if (strpos("$email","@admin")) {
+            $this->role="1";
+        }
+         else if (strpos("$email","@hr")) {
+            $this->role="2";
+        }
 
-
-        $this->dbh->query("INSERT INTO users (`name`, `email`, `password` , `role` ) VALUES (:uname, :email, :pass, :role)");
+        $this->dbh->query("INSERT INTO users (`MAC`, `name`,`Title`,`phone`, `email`, `password`, `role`) VALUES(:mac, :uname,:Title ,:phone, :email, :pass, :role)");
+        $this->dbh->bind(':mac', $this->mac);
         $this->dbh->bind(':uname', $this->name);
         $this->dbh->bind(':email', $this->email);
         $this->dbh->bind(':pass', $this->password);
+        $this->dbh->bind(':Title', $this->Title);
+        $this->dbh->bind(':phone', $this->phone);
         $this->dbh->bind(':role', $this->role);
-
         
-
 
         return $this->dbh->execute();
     }
 }
-?>
