@@ -107,7 +107,6 @@ th {
 
 </table>
 
- <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
 
 </div>
 
