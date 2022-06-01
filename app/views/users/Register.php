@@ -7,15 +7,40 @@ class Register extends view
 
     require APPROOT . '/views/inc/header.php';
     $text = <<<EOT
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4"> $title</h1>
-    </div>
-  </div>
+      <style>
+    .wrapper {
+  max-width:1000;
+  min-height: 300px;
+  margin: 80px auto;
+  padding: 40px 30px 30px 30px;
+  background-color: #ecf0f3;
+  border-radius: 15px;
+}
+body {
+  background: -webkit-linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
+  background-size: cover;
+}
+.button3 {
+  background-color: #f44336;
+  margin-left: 150px;
+  font-size: 20px;
+  border-radius: 30px;
+  color: white;
+   border: none;
+   margin-top: 40px;
+        } 
+.button2 {
+background-color: green;
+margin-left: 500px;
+font-size: 20px;
+border-radius: 30px;
+color: white;
+border: none;
+margin-top: 40px;
+}
+</style>
 
-  </div>
-  </div>
-  </div>
+
 EOT;
     echo $text;
     $this->printForm();
@@ -29,8 +54,8 @@ EOT;
 
     $text = <<<EOT
     <div class="row">
-    <div class="col-md-6 mx-auto">
-    <div class="card card-body bg-light mt-5">
+    <div class="wrapper">
+    
     <h2>Sign Up</h2>
     <form action="$action" method="post">
 EOT;
@@ -40,13 +65,14 @@ EOT;
     $this->printPassword();
     $this->printConfirmPassword();
     $text = <<<EOT
+
     <div class="container">
       <div class="row mt-4">
         <div class="col">
           <input type="submit" value="Register" class="form-control btn btn-lg btn-primary btn-block">
         </div>
         <div class="col">
-          <a href="$loginUrl" class="form-control btn btn-lg btn-block">Current user, login here</a>
+          <a href="$loginUrl" style="font-size:25px;">Current user, login here</a>
         </div>
       </div>
       </div>
