@@ -61,6 +61,8 @@ EOT;
 EOT;
     echo $text;
     $this->printName();
+    $this->printTitle();
+    $this->printphone();
     $this->printEmail();
     $this->printPassword();
     $this->printConfirmPassword();
@@ -91,6 +93,22 @@ EOT;
     $valid = (!empty($err) ? 'is-invalid' : '');
 
     $this->printInput('text', 'name', $val, $err, $valid);
+  }
+   private function printTitle()
+  {
+    $val = $this->model->getTitle();
+    $err = $this->model->getTitleErr();
+    $valid = (!empty($err) ? 'is-invalid' : '');
+
+    $this->printInput('Title', 'Title', $val, $err, $valid);
+  }
+   private function printphone()
+  {
+    $val = $this->model->getphone();
+    $err = $this->model->getphoneErr();
+    $valid = (!empty($err) ? 'is-invalid' : '');
+
+    $this->printInput('phone', 'phone', $val, $err, $valid);
   }
   private function printEmail()
   {
