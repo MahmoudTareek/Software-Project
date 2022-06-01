@@ -8,6 +8,8 @@ class Users extends Controller
             // Process form
             $registerModel->setName(trim($_POST['name']));
             $registerModel->setEmail(trim($_POST['email']));
+            $registerModel->setTitle(trim($_POST['Title']));
+            $registerModel->setphone(trim($_POST['phone']));
             $registerModel->setPassword(trim($_POST['password']));
             $registerModel->setConfirmPassword(trim($_POST['confirm_password']));
 
@@ -33,6 +35,8 @@ class Users extends Controller
             if (
                 empty($registerModel->getNameErr()) &&
                 empty($registerModel->getEmailErr()) &&
+                empty($registerModel->getTitleErr()) &&
+                empty($registerModel->getphoneErr()) &&
                 empty($registerModel->getPasswordErr()) &&
                 empty($registerModel->getConfirmPasswordErr())
             ) {
