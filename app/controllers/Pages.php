@@ -61,11 +61,24 @@ class Pages extends Controller
         $indexView = new Edit($this->getModel(), $this);
         $indexView->output();
     }
-     public function contact()
+
+    public function contact()
     {
         $viewPath = VIEWS_PATH . 'pages/contact.php';
         require_once $viewPath;
         $aboutView = new Contact($this->getModel(), $this);
         $aboutView->output();
+    }
+
+        public function Register()
+    {
+        $registerModel=$this->getModel();
+
+        
+        $registerModel->signup();
+        $viewPath = VIEWS_PATH . 'pages/Register.php';
+        require_once $viewPath;
+        $registerView = new Register($this->getModel(), $this);
+        $registerView->output();
     }
 }
