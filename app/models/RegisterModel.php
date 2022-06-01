@@ -4,7 +4,7 @@ class RegisterModel extends UserModel
 {
     public  $title = 'User Registration Page';
     protected $name;
-    protected $mac;
+    protected $role;
     protected $nameErr;
     protected $confirmPassword;
     protected $confirmPasswordErr;
@@ -15,8 +15,7 @@ class RegisterModel extends UserModel
         parent::__construct();
         $this->name     = "";
         $this->nameErr = "";
-        $this->mac = exec('getmac');
-        $this->mac = strtok($this->mac, ' ');
+        $this->role = "";
         $this->confirmPassword = "";
         $this->confirmPasswordErr = "";
     }
@@ -61,12 +60,30 @@ class RegisterModel extends UserModel
 
     public function signup()
     {
-        $this->dbh->query("INSERT INTO users (`MAC`, `name`, `email`, `password`) VALUES(:mac, :uname, :email, :pass)");
-        $this->dbh->bind(':mac', $this->mac);
+     $uname=$_POST['name'];
+     $email=$_POST['email'];
+     $pass=$_POST['password'];
+     $role=$_POST['role'];
+
+    if(strpos("$email","@admin")){
+     $this->role = "1";
+      }
+           else if(strpos("$email","@hr")){
+        $this->role = "2";
+           }
+ 
+
+
+        $this->dbh->query("INSERT INTO users (`name`, `email`, `password` , `role` ) VALUES (:uname, :email, :pass, :role)");
         $this->dbh->bind(':uname', $this->name);
         $this->dbh->bind(':email', $this->email);
         $this->dbh->bind(':pass', $this->password);
+        $this->dbh->bind(':role', $this->role);
+
+        
+
 
         return $this->dbh->execute();
     }
 }
+?>
