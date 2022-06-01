@@ -2,19 +2,18 @@
 class AdminModel extends model
 {
     protected $email;
-    protected $password;
-
-    protected $emailErr;
-    protected $passwordErr;
+    protected $name;
+    protected $title1;
+    protected $macaddress;
 
     public function __construct()
     {
         parent::__construct();
         $this->email    = '';
-        $this->password = '';
+        $this->name = '';
 
-        $this->emailErr    = '';
-        $this->passwordErr = '';
+        $this->title1    = '';
+        $this->macaddress = '';
     }
 
     public function getEmail()
@@ -26,31 +25,30 @@ class AdminModel extends model
         $this->email = $email;
     }
 
-    public function getPassword()
+    public function getname()
     {
-        return $this->password;
+        return $this->name;
     }
-    public function setPassword($password)
+    public function setname($name)
     {
-        $this->password = $password;
+        $this->name = $name;
+    }
+     public function gettitle1()
+    {
+        return $this->title1;
+    }
+    public function settitle1($title1)
+    {
+        $this->title1 = $title1;
     }
 
-    public function getEmailErr()
+    public function getmacaddress()
     {
-        return $this->emailErr;
+        return $this->macaddress;
     }
-    public function setEmailErr($emailErr)
+    public function setmacaddress($macaddress)
     {
-        $this->emailErr = $emailErr;
-    }
-
-    public function getPasswordErr()
-    {
-        return $this->passwordErr;
-    }
-    public function setPasswordErr($passwordErr)
-    {
-        $this->passwordErr = $passwordErr;
+        $this->macaddress = $macaddress;
     }
 
     public function findUserByEmail($email)
@@ -65,5 +63,14 @@ class AdminModel extends model
     public function emailExist($email)
     {
         return $this->findUserByEmail($email) > 0;
+    }
+     public function employee()
+    {
+
+          $this->dbh->query("SELECT * FROM users");
+          $this->dbh->execute();
+          $result = $this->dbh->resultSet();
+           return $result;
+        
     }
 }
