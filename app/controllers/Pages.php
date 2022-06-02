@@ -27,6 +27,16 @@ class Pages extends Controller
     }
     public function attendance()
     {
+        $AttendanceModel = $this->getModel();
+        if (isset($_POST['add_button'])) {
+            $AttendanceModel->Checkin();
+            redirect('pages/attendance');
+        }
+        if (isset($_POST['update_button'])) {
+            $AttendanceModel->Checkout();
+            $AttendanceModel->WorkingHours();
+            redirect('pages/attendance');
+        }
         $viewPath = VIEWS_PATH . 'pages/Attendance.php';
         require_once $viewPath;
         $aboutView = new Attendance($this->getModel(), $this);
