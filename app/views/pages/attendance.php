@@ -5,9 +5,11 @@ class Attendance extends view
   public function output()
   {
     $title = $this->model->title;
-    $data = $this->model->data;
 
     require APPROOT . '/views/inc/header.php';
+    $action = URLROOT . 'pages/attendance';
+    $name = $_SESSION['user_name'];
+    $mac = $_SESSION['user_mac'];
     $text = <<<EOT
     <style>
     .wrapper {
@@ -17,10 +19,10 @@ class Attendance extends view
   padding: 40px 30px 30px 30px;
   background-color: #ecf0f3;
   border-radius: 15px;
-  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;    
 }
 body {
-background: linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
+  background: linear-gradient(89deg, #416fb6 0%, #a9deea 100%);
+  background-size: cover;
 }
 .button3 {
   background-color: #f44336;
@@ -39,7 +41,6 @@ color: white;
 border: none;
 margin-top: 40px;
 }
-
 </style>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,22 +48,20 @@ margin-top: 40px;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
-
 <div class="container">
   <div class="wrapper">
 <center><h2>-Attendance-</h2></center>
-<form>
-  <div class="form-group">
-    <label for="email">MAC Address:</label>
-    <input type="email" class="form-control" id="email" placeholder="MacAddress">
+<form action="$action" method="post">
+<div class="form-group">
+    <label for="MAC">MAC Address:</label>
+    <input type="text" class="form-control" value="$mac" readonly>
   </div>
   <div class="form-group">
-    <label for="pwd">Name:</label>
-    <input type="password" class="form-control" id="pwd" placeholder="Enter your name">
+    <label for="Name">Name:</label>
+    <input type="text" class="form-control" value="$name" readonly>
   </div>
-  <button type="submit" class=" button2">check in</button>
-  <button type="submit" class=" button3">check out</button>
+  <button type="submit" name="add_button" value="Add" class=" button2">check in</button>
+  <button type="submit" name="update_button" value="Update" class=" button3">check out</button>
 </form> 
 </div>
 </div>
