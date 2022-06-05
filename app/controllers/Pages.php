@@ -49,6 +49,15 @@ class Pages extends Controller
         $aboutView = new Admin($this->getModel(), $this);
         $aboutView->output();
     }
+      public function HR()
+    {
+        $HRModel=$this->getModel();
+        $HRModel->HR();
+        $viewPath = VIEWS_PATH . 'pages/HR.php';
+        require_once $viewPath;
+        $HRView = new HR($this->getModel(), $this);
+        $HRView->output();
+    }
 
     public function adduser()
     {
