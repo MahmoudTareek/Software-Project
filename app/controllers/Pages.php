@@ -58,11 +58,26 @@ class Pages extends Controller
         $aboutView->output();
     }
     public function permission()
-    {
+     {
+        $registerModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $registerModel->setfromDate(trim($_POST['fromDate']));
+            $registerModel->settoDate(trim($_POST['toDate']));
+            $registerModel->setfromTime(trim($_POST['fromTime']));
+            $registerModel->settoTime(trim($_POST['toTime']));    
+            $registerModel->setemail(trim($_POST['email'])); 
+            $registerModel->settype(trim($_POST['type']));   
+            $registerModel->setreason(trim($_POST['reason']));         
+            $registerModel->Add();
+            redirect('pages/Index');
+
+        }
         $viewPath = VIEWS_PATH . 'pages/Permission.php';
         require_once $viewPath;
         $indexView = new Permission($this->getModel(), $this);
         $indexView->output();
+
     }
     public function edit()
     {
