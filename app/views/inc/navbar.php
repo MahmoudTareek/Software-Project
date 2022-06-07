@@ -7,16 +7,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo URLROOT . 'users/login'; ?>">Home</a>
-        </li>
+          <a class="nav-link active" aria-current="page" href="<?php echo URLROOT . 'public'; ?>">Home</a>
+          </li>
+          <?php  if(isset($_SESSION['user_id'])){
+          if ($_SESSION['user_role'] == '0'){
+            ?>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT . 'pages/about'; ?>">About Us</a>
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/about'; ?>">Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT . 'pages/profile'; ?>">Profile</a>
         </li>
-		<li class="nav-item">  <a class="nav-link" href="<?php echo URLROOT . 'pages/contact'; ?>">Contact</a>
+		    <li class="nav-item">  <a class="nav-link" href="<?php echo URLROOT . 'pages/contact'; ?>">Concerns</a>
          </li>
+          <?php } ?>
+          <?php if ($_SESSION['user_role'] == '1'){
+            ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/admin'; ?>">Admin</a>
+          <?php } ?>
+          <?php if ($_SESSION['user_role'] == '2'){
+            ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/admin'; ?>">Admin</a>
+          <?php }
+          } ?>
 		 <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php if (isset($_SESSION['user_id'])) {
@@ -28,17 +41,17 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php if (isset($_SESSION['user_id'])) : ?>
-              <li><a class="dropdown-item" href="users/logout">Logout</a></li>
+              <li><a class="dropdown-item" href=" <?php echo URLROOT . 'users/logout';?>">Logout</a></li>
             <?php else : ?>
               <li><a class="dropdown-item" href="<?php echo URLROOT . 'users/login'; ?>">Login</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+              <li><a class="dropdown-item" href="<?php echo URLROOT . 'users/register'; ?>">Sign Up</a></li>
+              
+              
             <?php endif; ?>
           </ul>
         </li>
 
-      </ul>
+            </ul>
     </div>
   </div>
 </nav>
