@@ -118,6 +118,8 @@ class Users extends Controller
         echo 'logout called';
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
+        unset($_SESSION['user_mac']);
+        unset($_SESSION['user_role']);
         session_destroy();
         header('location: ' . LOGOUTROOT . 'users/login');
     }
