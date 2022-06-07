@@ -5,10 +5,11 @@ class Index extends View
   {
     $title = $this->model->title;
     $subtitle = $this->model->subtitle;
-    // $user_id = $_SESSION['user_id'];
-    // $user_name = $_SESSION['user_name'];
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_SESSION['user_name'];
 
     require APPROOT . '/views/inc/header.php';
+    if($user_id){
     $text = <<<EOT
 <style>
 body{
@@ -45,7 +46,7 @@ h3{
   margin-top: -42px;
 }
 h6{
-  padding-left: 770px;
+  padding-left: 770px;  
 }
 img{
   margin-left: 320px;
@@ -73,4 +74,8 @@ EOT;
     echo $text;
     require APPROOT . '/views/inc/footer.php';
   }
+  else{
+    header('location: ' . URLROOT . 'users/login');
+  }
+}
 }
