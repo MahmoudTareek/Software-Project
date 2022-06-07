@@ -46,7 +46,7 @@ class Users extends Controller
                 if ($registerModel->signup()) {
                     //header('location: ' . URLROOT . 'users/login');
                     flash('register_success', 'You have registered successfully');
-                    redirect('users/login');
+                    header('location: ' . URLROOT . 'users/login');
                 } else {
                     die('Error in sign up');
                 }
@@ -107,10 +107,10 @@ class Users extends Controller
     public function createUserSession($user)
     {
         $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_role'] = $user->role;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_mac'] = $user->MAC;
-        //header('location: ' . URLROOT . 'pages');
-        redirect('pages');
+        header('location: ' . URLROOT . 'pages');
     }
 
     public function logout()
@@ -119,7 +119,7 @@ class Users extends Controller
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
         session_destroy();
-        redirect('users/login');
+        header('location: ' . LOGOUTROOT . 'users/login');
     }
 
     public function isLoggedIn()
