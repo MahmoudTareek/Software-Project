@@ -10,6 +10,7 @@ define('DB_NAME', 'miublog');
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
 define('URLROOT', 'http://localhost/mvc/public/');
+define('LOGOUTROOT', 'http://localhost/mvc/public/');
 // Site Name
 define('SITENAME', 'MIU Blog MVC');
 
