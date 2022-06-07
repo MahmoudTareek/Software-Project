@@ -19,8 +19,29 @@ abstract class Controller
             die('Model does not exist');
         }
     }
+   
+
     public function getModel()
     {
         return $this->model;
     }
+    public function loadModel($model)
+    {
+        $modelPath = Util\pathBuilder('models',$model);
+
+        if(file_exists($modelPath)){
+
+            require_once $modelPath;
+            return new $model();
+        }
+        else {
+                die('Model does not exist');
+
+             }
+
+
+    }
+
+
+
 }
