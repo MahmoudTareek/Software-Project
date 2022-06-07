@@ -88,13 +88,29 @@ class Pages extends Controller
         $indexView->output();
 
     }
-    public function edit()
-    {
-        $viewPath = VIEWS_PATH . 'pages/Edit.php';
+     public function report()
+     {
+        $registerModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $registerModel->setfromDate(trim($_POST['fromDate']));
+            $registerModel->settoDate(trim($_POST['toDate']));
+            $registerModel->setfromTime(trim($_POST['fromTime']));
+            $registerModel->settoTime(trim($_POST['toTime']));    
+            $registerModel->setemail(trim($_POST['email'])); 
+            $registerModel->settype(trim($_POST['type']));   
+            $registerModel->setreason(trim($_POST['reason']));         
+            $registerModel->Add();
+            redirect('pages/Index');
+
+        }
+        $viewPath = VIEWS_PATH . 'pages/report.php';
         require_once $viewPath;
-        $indexView = new Edit($this->getModel(), $this);
+        $indexView = new report($this->getModel(), $this);
         $indexView->output();
+
     }
+   
 
     public function contact()
     {
@@ -103,3 +119,49 @@ class Pages extends Controller
         $aboutView = new Contact($this->getModel(), $this);
         $aboutView->output();
     }
+  function getUserById( $userId , $user) {
+        foreach ($user as $x){
+            if($x->id == $userId)
+                return $x;
+        }
+    }
+    //  function getProductById( $productID , $products) {
+    //     foreach ($products as $product){
+    //         if($product->product_id == $productID)
+    //             return $product;
+    //     }
+    // } productModel
+
+
+    public function Edit($userId)
+    {      $usersModel = $this->loadModel('AdminModel');
+               
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $oldWorker = $usersModel->getUserById($userId)[0];
+            $editModel = $this->getModel();
+            
+            
+            $editModel->setemail(trim($_POST['email']));
+            $editModel->setName(trim($_POST['name']));
+            $editModel->setTitle(trim($_POST['Title']));          
+            $editModel->Edit($userId);
+            header('location: ' . URLROOT . 'pages/admin');
+
+        }
+        $this->users = $usersModel->getUserById($userId)[0];
+
+        $viewPath = VIEWS_PATH . 'pages/Edit.php';
+        require_once $viewPath;
+        $EditView = new Edit($this->getModel(), $this);
+        $EditView->output();
+    }
+     public function concerns1()
+    {
+        $viewPath = VIEWS_PATH . 'pages/concerns1.php';
+        require_once $viewPath;
+        $aboutView = new concerns1($this->getModel(), $this);
+        $aboutView->output();
+    }
+
+}
