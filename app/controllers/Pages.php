@@ -44,6 +44,8 @@ class Pages extends Controller
     }
      public function admin()
     {
+        $adminmodel=$this->getModel();
+        $adminmodel->employee();
         $viewPath = VIEWS_PATH . 'pages/Admin.php';
         require_once $viewPath;
         $aboutView = new Admin($this->getModel(), $this);
@@ -59,13 +61,6 @@ class Pages extends Controller
         $HRView->output();
     }
 
-    public function adduser()
-    {
-        $viewPath = VIEWS_PATH . 'pages/AddUser.php';
-        require_once $viewPath;
-        $aboutView = new AddUser($this->getModel(), $this);
-        $aboutView->output();
-    }
     public function permission()
      {
         $registerModel = $this->getModel();
@@ -125,14 +120,23 @@ class Pages extends Controller
                 return $x;
         }
     }
-    //  function getProductById( $productID , $products) {
-    //     foreach ($products as $product){
-    //         if($product->product_id == $productID)
-    //             return $product;
-    //     }
-    // } productModel
+   
+
+      public function Delete($userId)
+    {
+                
+        $registerModel = $this->getModel();
+     
+       $registerModel->Delete($userId);
+             redirect('pages/Admin');
+
+        $viewPath = VIEWS_PATH . 'pages/Delete.php';
+        require_once $viewPath;
+        $DeleteuserView = new Delete($this->getModel(), $this);
+        $DeleteuserView->output();
 
 
+    }
     public function Edit($userId)
     {      $usersModel = $this->loadModel('AdminModel');
                
@@ -163,5 +167,6 @@ class Pages extends Controller
         $aboutView = new concerns1($this->getModel(), $this);
         $aboutView->output();
     }
+    
 
 }
