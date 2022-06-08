@@ -39,6 +39,33 @@ border: none;
 margin-top: 40px;
 }
 </style>
+<script>
+function adduservalidation(){
+
+  var passw = document.getElementById("password").value;
+  var passw2 = document.getElementById("confirm_password").value;
+  var mail = document.getElementById("email").value;
+
+  if(passw.length < 8){
+    alert("Password length must be atleast 8 characters");
+    return false;
+    }
+
+  if(passw2.length < 8){
+    alert("Re-Password length must be atleast 8 characters");
+    return false;
+    }
+
+    if(passw != passw2){
+      alert("Re-Password is not correct!")
+      return false;
+    }
+    else if (!strpos(mail, '@') !== false) {
+      alert("Email should contain @example.com");
+      return false;
+    }
+}
+</script>
 
 
 EOT;
