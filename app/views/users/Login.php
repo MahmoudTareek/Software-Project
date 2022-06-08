@@ -5,6 +5,7 @@ class Login extends view
   {
 
     require APPROOT . '/views/inc/header.php';
+    $signupUrl = URLROOT . 'users/register';
     flash('register_success');
     $text = <<<EOT
     <div class="jumbotron jumbotron-fluid">
@@ -76,6 +77,9 @@ function signinvalidation(){
        <button type="submit" onclick="signinvalidation()" class="btn mt-3">Login</button>
    </form>
    <div class="text-center fs-6"> <a href="#">Forget password?</a> </div>
+      <div class="col">
+   <a href="$signupUrl" style="margin-left:50px;font-size:20px;">New user, signup here</a>
+   </div>
 </div>
 EOT;
     echo $text;
