@@ -9,7 +9,15 @@ class Pages extends Controller
         $indexView = new Index($this->getModel(), $this);
         $indexView->output();
     }
-
+public function Hconcern()
+    {
+        $HRModel=$this->getModel();
+        $HRModel->Hconcern();
+        $viewPath = VIEWS_PATH . 'pages/Hconcern.php';
+        require_once $viewPath;
+        $HRView = new Hconcern($this->getModel(), $this);
+        $HRView->output();
+    }
     public function about()
     {
         $viewPath = VIEWS_PATH . 'pages/About.php';
