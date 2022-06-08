@@ -1,14 +1,3 @@
-<?php
-class admin extends view
-{
-
-  public function output()
-  {
-   
-
-    require APPROOT . '/views/inc/header.php';
-    $text = <<<EOT
-
 
 <html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
