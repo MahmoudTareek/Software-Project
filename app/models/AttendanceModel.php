@@ -49,6 +49,7 @@ class AttendanceModel extends model
         $record = $this->dbh->single();
         // $this->hourss = abs(strtotime($record->Checkout) - strtotime($record->Checkin))/60/60;
         $this->hourss = abs(strtotime($record->Checkout) - strtotime($record->Checkin));
+        $this->hourss = floor($this->hourss * 10) / 10;
         $this->dbh->query("UPDATE timesheet set Hours1 = :hourss WHERE id = :ID AND Date1 = :Datee AND Showed = '1'");
         $this->dbh->bind(':hourss', $this->hourss);
         $this->dbh->bind(':ID', $this->id);
