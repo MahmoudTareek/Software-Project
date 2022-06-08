@@ -5,7 +5,7 @@ class Attendance extends view
   public function output()
   {
     $title = $this->model->title;
-
+    $report=$this->model->Report();
     require APPROOT . '/views/inc/header.php';
     $action = URLROOT . 'pages/attendance';
     $name = $_SESSION['user_name'];
@@ -67,6 +67,40 @@ margin-top: 40px;
 </div>
 EOT;
     echo $text;
+if($report){
+    $str= "<style>
+    table,th,td,tr{
+        border:1px solid black;
+    }
+    th,td{
+        padding: 15px;
+        text-align: left;
+        background-color: white;
+    }
+    th{
+        background-color: grey;
+        color: white;
+    }
+    table{
+        width: 100%;
+        margin-left: 15px;
+    }
+    </style>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Check in</th>
+        <th>Check out</th>
+        <th>Working Hours</th>
+    </tr>
+                  </thead>";
+                        foreach($report as $x){
+                        
+                          $str.="<tr><td>".$x->Date1."</td><td>".$x->Checkin."</td><td>".$x->Checkout."</td><td>".$x->Hours1." Seconds</td>";
+                            }
+          $str.="</table>";
+          echo $str;
     require APPROOT . '/views/inc/footer.php';
   }
+}
 }
