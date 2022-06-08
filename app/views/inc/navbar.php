@@ -24,10 +24,17 @@
         <li class="nav-item">
           <a class="nav-link" href="<?php echo URLROOT . 'pages/admin'; ?>">Admin</a>
           <?php } ?>
-          <?php if ($_SESSION['user_role'] == '2'){
+        <?php if ($_SESSION['user_role'] == '2'){
             ?>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo URLROOT . 'pages/admin'; ?>">Admin</a>
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/hr'; ?>">Permissions</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/reports'; ?>">Reports</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="<?php echo URLROOT . 'pages/Hconcern'; ?>">Concerns</a>
+          </li>
           <?php }
           } ?>
 		 <li class="nav-item dropdown">
