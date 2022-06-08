@@ -107,8 +107,17 @@ class Pages extends Controller
     }
    
 
-    public function contact()
-    {
+  public function contact()
+    {$concernModel = $this->getModel();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $concernModel->setname(trim($_POST['name']));    
+            $concernModel->setemail(trim($_POST['email'])); 
+            $concernModel->setphone(trim($_POST['phone']));   
+            $concernModel->setMessage(trim($_POST['Message']));         
+            $concernModel->concern();
+            redirect('pages/Admin');
+}
         $viewPath = VIEWS_PATH . 'pages/contact.php';
         require_once $viewPath;
         $aboutView = new Contact($this->getModel(), $this);
