@@ -38,6 +38,8 @@ class Admin extends view
 
   public function output()
   {
+        if($_SESSION['user_role'] == '1'){
+
    
 
     require APPROOT . '/views/inc/header.php';
@@ -73,5 +75,21 @@ class Admin extends view
 
     echo $str;
     require APPROOT . '/views/inc/footer.php';
+            }
+else{
+    require APPROOT . '/views/inc/header.php';
+    $employees=$this->model->employee();
+
+?>
+
+<div class="container">
+          <div class="wrapper">
+            
+            <?php $str= " ";
+            
+
+    echo $str;
+    require APPROOT . '/views/inc/footer.php';
+  }
   }
 }
